@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>boxy</title>
     
-    <script defer src="script.js"></script>
     <link rel="stylesheet" href="app.css">
 </head>
 <body>
@@ -13,7 +12,7 @@
     <header class="flex p-4 justify-between gray">
         <h4 class="text-white text-lg">Listo Prestimo</h4>
         <!-- <div class="flex">
-             <p class="text-white sm:hidden">NEW TASK</p> 
+            <p class="text-white sm:hidden">NEW TASK</p> 
         </div> -->
         <div class="flex">
             <div class="px-2">
@@ -25,92 +24,70 @@
             <div class="px-2">
                 <img class="cursor-pointer" id="profile" src="images/user-solid.png" alt="user">   
             </div>
-
+            
         </div>
     </header>
-
+    
     <!-- main -->
-<div class="total">
-    <div class="mainIndex flex">
-        <!-- left card -->
-        <div class="card w-1/4 ">
-            <!-- search -->
-            <div class="mx-2 my-3">
-                <input class="button py-1 bg-white border-solid border border-gray-300 text-gray-500 w-full mt-4" placeholder="  Enter List Name...">
+    <div class="total">
+        <div class="mainIndex flex">
+            <div class="card w-1/4 ">
+                <div class="mx-2 my-3">
+                    <input class="button py-1 bg-white border-solid border border-gray-300 text-gray-500 w-full mt-4" placeholder="  Enter List Name...">
+                </div>
+                <!-- all the lists -->
+                <div id="listHolder">
+                    <!-- <div class="text-lg flex flex-col items-center gap-y-2"">
+                        <button id="list-increasing-number" class="text-left w-full max-w-xs">
+                            <div class="gray2 px-3 py-2 ">
+                                <p class="text-white ">test</p>
+                            </div>
+                        </button>
+                    </div> -->
+                </div>
             </div>
-            <!-- all the lists -->
-            <div id="listHolder">
-                <!-- <div class="text-lg flex flex-col items-center gap-y-2" id="listHolder">
-                    <button id="list1" class="text-left w-full max-w-xs">
-                        <div class="gray2 px-3 py-2 ">
-                            <p class="text-white ">test</p>
+
+
+            <div class="main w-3/4 bg-white ">
+                <div class="mx-4">
+                    <div class="border-solid border-b-2 border-gray-200 flex justify-between">
+                        <h1 id="current-list-name" class="text-5xl font-semibold inline-block mt-6 mb-4"><!-- title goes here--></h1>
+                        <div class="my-4 flex flex-col justify-between">
+                            <img class="cursor-pointer" id="edit" src="/images/pen-to-square-regular.png" alt="edit icon">
+                            <img class="cursor-pointer" id="delete" src="/images/trash-can-solid.png" alt="delete">
                         </div>
-                    </button>
-                </div> -->
-            </div>
-        </div>
-        <!-- right card -->
-        <div class="main w-3/4 bg-white ">
-            <!-- contains the whole right portion -->
-            <div class="mx-4">
-                <!-- title and the little line below -->
-                <div class="border-solid border-b-2 border-gray-200 flex justify-between">
-                    <h1 id="current-list-name" class="text-5xl font-semibold inline-block mt-6 mb-4">Shopping list</h1>
-                    <div class="my-4 flex flex-col justify-between">
-                        <img class="cursor-pointer" id="edit" src="/images/pen-to-square-regular.png" alt="edit icon">
-                        <img class="cursor-pointer" id="delete" src="/images/trash-can-solid.png" alt="delete">
+                    </div>
+                    <!-- checklist items -->
+                    <div class="pt-5" id="current-list-todos">
+                        <!-- <ul class="w-full">
+                            <li class="flex">
+                                <div class="my-auto">
+                                    <input type="checkbox">
+                                </div>
+                                <p class="p-2 hidden">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat at, ab harum repudiandae perferendis libero quis quasi pariatur, aperiam in quam, amet asperiores repellat similique quod natus a minima ea!</p>
+                                <textarea id="edit2" cols="auto" rows="auto"></textarea>
+                                <div class="shrink-0 flex flex-col justify-center px-3 gap-y-4">
+                                    <img id="" class="list-img cursor-pointer" src="/images/pen-to-square-regular.png" alt="edit icon">
+                                    <img id="" class="list-img cursor-pointer" src="/images/trash-can-solid.png" alt="delete">
+                                </div>
+                            </li>
+                            <li class="flex">
+                                <div class="my-auto">
+                                    <input type="checkbox">
+                                </div>
+                                <p class="p-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat at, ab harum repudiandae perferendis libero quis quasi pariatur, aperiam in quam, amet asperiores repellat similique quod natus a minima ea!</p>
+                                <div class="shrink-0 flex flex-col justify-center px-3 gap-y-4">
+                                    <img id="" class="list-img cursor-pointer" src="/images/pen-to-square-regular.png" alt="edit icon">
+                                    <img id="" class="list-img cursor-pointer" src="/images/trash-can-solid.png" alt="delete">
+                                </div>
+                            </li>
+                            <li class="mt-8"><img src="/images/plus-solid.png" alt=""></li>
+                        </ul> -->
+                        </div>
                     </div>
                 </div>
-                <!-- checklist items -->
-                <div class="pt-5" id="current-list-todos">
-                    <!-- <ul class="w-full"> -->
-                        <!-- <li class="flex">
-                          <div class="my-auto">
-                            <input type="checkbox">
-                          </div>
-                          <p class="p-2 hidden">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat at, ab harum repudiandae perferendis libero quis quasi pariatur, aperiam in quam, amet asperiores repellat similique quod natus a minima ea!</p>
-                          <textarea id="edit2" cols="auto" rows="auto"></textarea>
-                          <div class="shrink-0 flex flex-col justify-center px-3 gap-y-4">
-                            <img id="" class="list-img cursor-pointer" src="/images/pen-to-square-regular.png" alt="edit icon">
-                            <img id="" class="list-img cursor-pointer" src="/images/trash-can-solid.png" alt="delete">
-                          </div>
-                        </li>
-                        <li class="flex">
-                          <div class="my-auto">
-                                <input type="checkbox">
-                          </div>
-                          <p class="p-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat at, ab harum repudiandae perferendis libero quis quasi pariatur, aperiam in quam, amet asperiores repellat similique quod natus a minima ea!</p>
-                          <div class="shrink-0 flex flex-col justify-center px-3 gap-y-4">
-                             <img id="" class="list-img cursor-pointer" src="/images/pen-to-square-regular.png" alt="edit icon">
-                            <img id="" class="list-img cursor-pointer" src="/images/trash-can-solid.png" alt="delete">
-                          </div>
-                          </li>
-                          <li class="mt-8"><img src="/images/plus-solid.png" alt=""></li> -->
-                    <!-- </ul> -->
-                </div>
             </div>
         </div>
-    </div>
-</div>
-
-    
-<!--    
-    <div class="text-center">
-         <p>%tax</p>
-        <input class="bg-gray-500 enter" type="number" id="inputLOL" placeholder="Enter Tax">
-    </div>
-    <div class="text-center">
-        <p>$price</p>
-        <input class="bg-gray-500 enter" type="number" id="money" placeholder="Enter Total">
-    </div>
-    <div class="text-center">
-        <button id="create">Calculate</button>
-    </div>
-    <div class="text-center">
-        <p id="result"></p>
-    </div>
-    <div>
-        <ul id="boxy"></ul>
-    </div> -->
-</body>
-</html>
+            <script defer src="script.js"></script>
+        </body>
+        </html>

@@ -91,11 +91,11 @@ const lists = {
         todos: [
             {
                 text: 'dishes',
-                completed: true
+                completed: false
             },
             {
                 text: 'vaccum living room',
-                completed: false
+                completed: true
             }
         ]
   }],
@@ -113,63 +113,72 @@ const lists = {
         ]
   }]
 };
-const currentList = lists[1][0];
-console.log(currentList);
+localStorage.setItem("test",lists)
+let currentList = lists[1][0];
+// console.log(currentList);
 // console.log(lists.first[0].todos[0].completed);
-render();
-function render() {
-    //this will hold the html that will be displayed in the sidebar
+
+
+
+function render(clicked_id) {
+    let increase = 1;
+    if (clicked_id === undefined){
+        clicked_id = 1;
+    }
     let listsHtml = '<div class="text-lg flex flex-col items-center gap-y-2">';
-    //iterate through the lists to get their names
     for (const prop in lists) {
         listsHtml += `
-          <button id="list1" class="text-left w-full max-w-xs">
-            <p class="text-white gray2 px-3 py-2">${lists[prop][0].name}</p>
-          </button>`;
-      };
+        <button  class="clicker text-left w-full max-w-xs">
+        <p id="${increase}" class="text-white gray2 px-3 py-2" onClick='render(this.id)'>${lists[prop][0].name}</p>
+        </button>`;
+        increase++;
+    };
     listsHtml += '</div>';
-    
-    // prints out the lists
     document.getElementById('listHolder').innerHTML = listsHtml;
-
-    // prints out the name of the current list
+    currentList = lists[clicked_id][0]
     document.getElementById('current-list-name').innerHTML = currentList.name;
-    
-    let chart = lists[1][0].todos;
-    console.log(chart[0].text);
-    //iterate over the todos in the current list 
+    let chart = currentList.todos;
     let todosHtml = '<ul class="list-group-flush w-full">';
+    let checked = ''
     for (const prop in chart) {
+        let completed = chart[prop].completed
+        if (completed){
+            completed = 'checked';
+        }
         todosHtml += `
-          <li class="list-group-item flex">
-            <div class="my-auto">
-              <input type="checkbox">
-            </div>
-            <p class="p-2">${chart[prop].text}</p>
-            <div class="shrink-0 flex flex-col justify-center gap-y-4">
-              <img class="list-img cursor-pointer" src="/images/pen-to-square-regular.png" alt="edit">
-              <img class="list-img cursor-pointer" src="/images/trash-can-solid.png" alt="delete">
-            </div>
-          </li>`;
+        <li class="list-group-item flex">
+          <div class="my-auto">
+            <input type="checkbox" ${completed}>
+          </div>
+          <p class="p-2">${chart[prop].text}</p>
+          <div class="shrink-0 flex flex-row justify-center items-center left">
+            <img class="list-img cursor-pointer mx-2 edit" src="/images/pen-to-square-regular.png" alt="edit">
+            <img class="list-img cursor-pointer mx-2 delete" onClick='remove(this)' src="/images/trash-can-solid.png" alt="delete">
+          </div>
+        </li>`;
     }
     todosHtml += '</ul>';
-    console.log(todosHtml);
     document.getElementById('current-list-todos').innerHTML = todosHtml;
-    // //print out the todos
-    // document.getElementById('current-list-todos').innerHTML = todosHtml;
 }
 
 
 
+function remove(example) {
+    select = example.parentNode.parentNode;
+    headSelect = select.parentNode;
+    headSelect.removeChild(select);
+}
 
+
+render()
 // function addTodo() {
-//     //get the todo text from the todo input box
-//     const text = document.getElementById('todo-input-box').value;
-//     if(text){
-//         currentList.todos.push({
-//             text: text,
-//             completed: false
-//         })
-//         render();
-//     }
-// }
+    //     //get the todo text from the todo input box
+    //     const text = document.getElementById('todo-input-box').value;
+    //     if(text){
+        //         currentList.todos.push({
+            //             text: text,
+            //             completed: false
+            //         })
+            //         render();
+            //     }
+            // }

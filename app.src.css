@@ -40,6 +40,9 @@ table {
 .row {
     border:1px #EBEBEB solid ;
 }
+.left{
+    margin-left: auto;
+}
 /* 
 .button {
     border:1px gray solid;
