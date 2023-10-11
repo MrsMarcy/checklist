@@ -37,12 +37,10 @@
                 </div>
                 <!-- all the lists -->
                 <div id="listHolder">
-                    <!-- <div class="text-lg flex flex-col items-center gap-y-2"">
-                        <button id="list-increasing-number" class="text-left w-full max-w-xs">
-                            <div class="gray2 px-3 py-2 ">
-                                <p class="text-white ">test</p>
-                            </div>
-                        </button>
+                <!-- <div class="text-lg flex flex-col items-center gap-y-2">
+                      <button class="clicker text-left w-full max-w-xs">
+                        <p id="${increase}" class="text-white gray2 px-3 py-2" onClick='render(this.id)'>${lists[prop][0].name}</p>
+                      </button>
                     </div> -->
                 </div>
             </div>
@@ -60,34 +58,23 @@
                     <!-- checklist items -->
                     <div class="pt-5" id="current-list-todos">
                         <!-- <ul class="w-full">
-                            <li class="flex">
-                                <div class="my-auto">
-                                    <input type="checkbox">
-                                </div>
-                                <p class="p-2 hidden">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat at, ab harum repudiandae perferendis libero quis quasi pariatur, aperiam in quam, amet asperiores repellat similique quod natus a minima ea!</p>
-                                <textarea id="edit2" cols="auto" rows="auto"></textarea>
-                                <div class="shrink-0 flex flex-col justify-center px-3 gap-y-4">
-                                    <img id="" class="list-img cursor-pointer" src="/images/pen-to-square-regular.png" alt="edit icon">
-                                    <img id="" class="list-img cursor-pointer" src="/images/trash-can-solid.png" alt="delete">
-                                </div>
-                            </li>
-                            <li class="flex">
-                                <div class="my-auto">
-                                    <input type="checkbox">
-                                </div>
-                                <p class="p-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat at, ab harum repudiandae perferendis libero quis quasi pariatur, aperiam in quam, amet asperiores repellat similique quod natus a minima ea!</p>
-                                <div class="shrink-0 flex flex-col justify-center px-3 gap-y-4">
-                                    <img id="" class="list-img cursor-pointer" src="/images/pen-to-square-regular.png" alt="edit icon">
-                                    <img id="" class="list-img cursor-pointer" src="/images/trash-can-solid.png" alt="delete">
-                                </div>
-                            </li>
+                          <li class="list-group-item flex" id='increasing-number'>
+                            <div class="my-auto">
+                              <input type="checkbox" checked || not>
+                            </div>
+                              <p class="p-2">whatever the text says in the data</p>
+                            <div class="shrink-0 flex flex-row justify-center items-center left">
+                              <img class="list-img cursor-pointer mx-2 edit" src="/images/pen-to-square-regular.png" alt="edit">
+                              <img class="list-img cursor-pointer mx-2 delete" onClick='remove(this)' src="/images/trash-can-solid.png" alt="delete">
+                            </div>
+                          </li>
                             <li class="mt-8"><img src="/images/plus-solid.png" alt=""></li>
                         </ul> -->
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-            <script defer src="script.js"></script>
-        </body>
-        </html>
+    </div>
+    <script defer src="script.js"></script>
+</body>
+</html>
