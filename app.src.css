@@ -12,7 +12,6 @@ html,body,.mainIndex{
 .gray2 {
     background-color: #818C98;
 }
-
 .total {
     height: 100%;
     margin: -60px auto;
@@ -26,12 +25,10 @@ img {
     width: 20px;
     height: 20px;
 }
-
 .card {
     background-color: #F8F9FA;
 }
 table {
-
     table-layout: fixed;
 }
 .check {
@@ -42,6 +39,14 @@ table {
 }
 .left{
     margin-left: auto;
+}
+.hover{
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+}
+.black-box {
+    /* border: 2px solid #818C98; */
+    box-shadow: 0 0 0 2px #818C98;
 }
 /* 
 .button {
