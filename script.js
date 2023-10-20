@@ -79,6 +79,7 @@
 // localStorage.setItem("test",lists)
 let currentList;
 let todosHtml;
+
 function render(clicked_id) {
     let increase = 0;
     let todoIncrease = 0;
@@ -105,11 +106,14 @@ function render(clicked_id) {
             completed = 'checked';
         }
         todosHtml += `
-        <li class="list-group-item flex ${clicked_id}" id='${todoIncrease}' onClick="hover(this)" ">
+        <li class="${clicked_id} list-group-item flex" id='${todoIncrease}' onClick="hover(this)" ">
           <div class="mx-2 my-auto">
             <input type="checkbox" ${completed}>
           </div>
-          <p class="p-2" ondblClick="editText(this.innerHTML)">${chart[prop].text}</p>
+          <div>
+            <p class="p-2" ondblClick="editText(this)">${chart[prop].text}</p>
+            <input class="editable hidden" type="text" size="100%" placeholder=" Type your item, then click the Checkmark or press ENTER" value="cheese">
+          </div>
           <div class="shrink-0 flex flex-row justify-center items-center left">
             <img class="list-img cursor-pointer mx-2 edit" src="/images/pen-to-square-regular.png" alt="edit">
             <img class="list-img cursor-pointer mx-2 delete" onClick='remove(this)' src="/images/trash-can-solid.png" alt="delete">
@@ -117,67 +121,78 @@ function render(clicked_id) {
         </li>`;
         todoIncrease++;
     }
-    todosHtml += `<li onClick="hover(this)" id="${todoIncrease}" class="${clicked_id} py-2"><img clas="list-img cursor-pointer ml-2" src="/images/plus-solid.png"></li>`
+    todosHtml += `<li id="${todoIncrease}" class="${clicked_id} py-2"><img onClick="add(this.parentNode)" class="list-img cursor-pointer mx-2 " src="/images/plus-solid.png"></li>`
     todosHtml += '</ul>';
     document.getElementById('current-list-todos').innerHTML = todosHtml;
 }
 
-function remove(example) {
-    let thisID = Number(example.parentNode.parentNode.id);
-    let className = example.parentNode.parentNode.className 
-    let num = Number(className.charAt(21))
-    let finder = lists[num].todos
-    finder.splice(thisID,1);
-    render(num);
+function editText(elem) {
+    let ul = document.getElementById('list-group-flush');
+    elem.nextElementSibling.value = elem.innerHTML;
+    
+    // let newLI1 = `<li class="flex">`;
+    // newLI1 += `<input class="black-box" id="input-text" type="text" size="47" placeholder=" Type your item, then click the Checkmark or press ENTER" value="${elem}">
+    // <img onClick="addFin()" class="cursor-pointer mx-2" src="/images/check-solid.png">`;
+    elem.nextElementSibling.classList.toggle('hidden');
+
+    // console.log(sib);
 }
 
-function add(element){
-    let ul = document.getElementById('list-group-flush');
+function remove(example) {
+    let thisID = Number(example.parentNode.parentNode.id);
+    let classNum = Number(example.parentNode.parentNode.className.charAt(0));
+    let finder = lists[classNum].todos;
+    finder.splice(thisID,1);
+    render(classNum);
+}
 
-    let newLI1 = `<li class="flex">`;
-    newLI1 += `<input class="black-box" id="input-text" type="text" size="47" placeholder=" Type your item, then click the Checkmark or press ENTER" value="placeholder">
-    <img onClick="addFin()" class="cursor-pointer mx-2" src="/images/check-solid.png">`;
+function add(elem) {
+    hover();
+    let ul = document.getElementById('list-group-flush');
+    let idNum = Number(elem.id); // gives us the id number
+    let classNum = Number(elem.className.charAt(0)); // gives us the current list task number
+    let newLI1 = `<li id="${idNum}" onClick="hover()" class="${classNum} flex py-1 my-3">`;
+    newLI1 += `<input onkeyDown="enter(event,${classNum})" class="black-box " id="input-text" type="text" size="47" placeholder=" Type your item, then click the Checkmark or press ENTER" value="">
+    <img onClick="addFin(${classNum})" class="cursor-pointer mx-2" src="/images/check-solid.png">`;
     
     ul.lastElementChild.remove()
     ul.innerHTML += newLI1;
-    
-    // MouseEvent
-    // ul.removeChild(holder)
-    // ul.appendChild(`<li class='box'><input type="text" id="name" size="10" /></li>`)
-    // let num = Number(element.parentNode.className);
-    // lists[num]['todos'].push(
-        //     {
-            //         text: 'test',
-            //         completed: true
-            //     })
-            // render(num)
-}
-function addFin() {
-    console.log('alexus is a dummy');
 }
 
-function editText(elem) {
+function addFin(classNum) {
+    hover();
     let ul = document.getElementById('list-group-flush');
-
-    let newLI1 = `<li class="flex">`;
-    newLI1 += `<input class="black-box" id="input-text" type="text" size="47" placeholder=" Type your item, then click the Checkmark or press ENTER" value="${elem}">
-    <img onClick="addFin()" class="cursor-pointer mx-2" src="/images/check-solid.png">`;
-
+    let liValue = document.getElementById('input-text').value.trim();
+    if (liValue === '') {
+        console.log('enter something please :(')
+    } else {
+    ul.lastElementChild.remove()
+    lists[classNum]['todos'].push(
+        {
+            text: `${liValue}`,
+            completed: false
+        })
+    render(classNum)
+    }
 }
+
+function enter(event,classNum) {
+    if (event.keyCode == 13){
+        addFin(classNum);
+    }
+}
+
 function hover(elem) {
     let siblings = [];
-    let page = document.getElementById('list-group-flush');
-    let currentChild = page.firstElementChild
-    while (page.childElementCount > 0) {
+    let ul = document.getElementById('list-group-flush');
+    let currentChild = ul.firstElementChild
+    while (ul.childElementCount > 0) {
         siblings.push(currentChild)
         currentChild = currentChild.nextElementSibling;
-        if (currentChild === null) {
-            break;
-        }
+        if (currentChild === null) break;
     }
-    siblings.forEach(elem => {
-        elem.classList.remove('black-box')
-    })
-    elem.classList.add('black-box')
+    siblings.forEach(elem => elem.classList.remove('black-box'))
+    if (elem !== undefined) elem.classList.add('black-box');
 }
+
 render()
