@@ -777,8 +777,20 @@ table {
   box-shadow: 0 0 0 2px #818C98;
 }
 
+.bg-gray{
+  background-color: #EBEBEB;
+}
+
 .hidden {
   display: none;
+}
+
+.editable{
+  width: 100%;
+}
+
+.strike {
+  text-decoration: line-through;
 }
 
 /* 
