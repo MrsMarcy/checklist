@@ -33,7 +33,7 @@
         <div class="mainIndex flex">
             <div class="card w-1/4 ">
                 <div class="mx-2 my-3">
-                    <input class="button py-1 bg-white border-solid border border-gray-300 text-gray-500 w-full mt-4" placeholder="  Enter List Name...">
+                    <input id="create" onkeydown="enterAll(event, 2, this)" class="button py-1 bg-white border-solid border border-gray-300 text-gray-500 w-full mt-4" placeholder="  Enter List Name...">
                 </div>
                 <!-- all the lists -->
                 <div id="listHolder">
@@ -49,8 +49,9 @@
             <div class="main w-3/4 bg-white ">
                 <div class="mx-4">
                     <div class="border-solid border-b-2 border-gray-200 flex justify-between">
-                        <h1 id="current-list-name" class="text-5xl font-semibold inline-block mt-6 mb-4"><!-- title goes here--></h1>
-                        <div class="my-4 flex flex-col justify-between">
+                        <h1 id="current-list-name" ondblclick="editTitle(this)" class="text-5xl font-semibold inline-block mt-6 mb-4"><!-- title goes here--></h1>
+                        <input id="titleEdit" onkeydown="enterAll(event, 3, this, null, null, value)" class="w-full hidden text-5xl font-semibold" type="text" value="">
+                        <div class="my-4 flex flex-col justify-center gap-3 shrink-0">
                             <img class="cursor-pointer" id="edit" src="/images/pen-to-square-regular.png" alt="edit icon">
                             <img class="cursor-pointer" id="delete" src="/images/trash-can-solid.png" alt="delete">
                         </div>

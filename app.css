@@ -583,6 +583,10 @@ video {
   display: flex;
 }
 
+.hidden {
+  display: none;
+}
+
 .w-1\/4 {
   width: 25%;
 }
@@ -625,6 +629,10 @@ video {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.gap-3 {
+  gap: 0.75rem;
 }
 
 .gap-y-2 {
@@ -783,10 +791,6 @@ table {
 
 .hidden {
   display: none;
-}
-
-.editable{
-  width: 100%;
 }
 
 .strike {

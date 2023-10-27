@@ -50,9 +50,6 @@ table {
 .hidden {
     display: none;
 }
-.editable{
-    width: 100%;
-}
 .strike {
     text-decoration: line-through;
 }
